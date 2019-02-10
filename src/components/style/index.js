@@ -16,3 +16,7 @@ export const LoadingGif = styled.div`
     height: 40px;
   }
 `;
+export const Center = styled.div`
+  display: flex;
+  justify-content: center;
+`;
