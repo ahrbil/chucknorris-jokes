@@ -66,7 +66,7 @@ class Jokes extends React.Component {
   render() {
     const { jokes, loading, categories } = this.state;
     // this is like if we don't have more results to fetch
-    const hasMore = !(jokes.length === 10);
+    const hasMore = !(jokes.length === 30);
     return (
       // a component tha calls loadJokes function when we reach a scrolling position
       <InfiniteScroll
