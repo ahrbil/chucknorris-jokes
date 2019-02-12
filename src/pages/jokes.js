@@ -30,9 +30,11 @@ class Jokes extends React.Component {
   loadJokes = async () => {
     const { jokes, selectedCategory, parPage } = this.state;
     // if we want to filter by categories we can pass it here
-    const res = getJokes(parPage, selectedCategory);
-    // wait for all promises to resolve
-    const newJokes = await Promise.all(res).catch(err => console.log(err));
+    // wait for all promise to resolve
+    const newJokes = await getJokes(parPage, selectedCategory).catch(err =>
+      console.log(err)
+    );
+    // const newJokes = await Promise.all(res);
     // add new jokes to the existed ones
     this.setState({ loading: false, jokes: [...jokes, ...newJokes] });
   };
@@ -79,8 +81,12 @@ class Jokes extends React.Component {
           <Categories categories={categories} onChange={this.handleSelect} />
           <JokesListStyle>
             {/* if we have jokes we map over them and display then in card */}
+            {/* some times we get duplicated jokes we make a new id  */}
+            {/* by combining joke's id and its index in the array that is unique and pass it to react */}
             {jokes &&
-              jokes.map(joke => <JokeCard key={joke.id} joke={joke.value} />)}
+              jokes.map((joke, index) => (
+                <JokeCard key={`${joke.id}-${index}`} joke={joke.value} />
+              ))}
             {/* if loading display a loading indicator */}
             {loading && (
               <LoadingGif>
