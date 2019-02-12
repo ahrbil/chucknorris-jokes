@@ -35,9 +35,9 @@ class InfiniteScroll extends React.Component {
 
   // when the component mounts we call handle scroll manually so we get some initial data
   componentDidMount = () => {
-    this.handleScroll();
     // set loading to true
-    this.props.loadMore();
+    this.props.setLoading();
+    this.handleScroll();
     // adding a scroll event listener to window
     window.addEventListener("scroll", this.handleScroll);
   };
